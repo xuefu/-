@@ -104,7 +104,7 @@ void PostOrder(TreeNode* root,vector<int> &result){
     PostOrder(root->right,result);  
     result.push_back(root->val);  
 }  
-// 4.2 非递归后序遍历  
+// 4.2 非递归后序遍历(反向思维, 也就是中右左版的先序遍历的反序)
 void PostOrder2(TreeNode *root,vector<int> &result) {  
     if(root == nullptr){  
         return;  
@@ -126,28 +126,6 @@ void PostOrder2(TreeNode *root,vector<int> &result) {
         }//if  
     }//while  
 } 
-// 4.3 非递归后序遍历(反向思维, 也就是中右左版的先序遍历的反序)  
-void PostOrder3(TreeNode *root,vector<int> &result) {  
-    if(root == nullptr){  
-        return;  
-    }//if  
-    stack<TreeNode*> s;  
-    s.push(root);  
-    TreeNode *node;  
-    while(!s.empty()){  
-        node = s.top();  
-        s.pop();  
-        result.insert(result.begin(), node->val);  
-        // 右子树  
-        if(node->left){  
-            s.push(node->left);  
-        }//if  
-        // 左子树  
-        if(node->right){  
-            s.push(node->right);  
-        }//if  
-    }//while  
-}  
 // 5 层次遍历  
 void LevelOrder(TreeNode* root,vector<int> &result){  
     if(root == nullptr){  
@@ -222,12 +200,6 @@ int main(){
     Print(result);  
     result.clear();  
     cout<<"-----------------------------"<<endl;  
-
-    cout<<"4.3 非递归后序遍历(反向思维)"<<endl;  
-    PostOrder3(root,result);  
-    Print(result);  
-    result.clear();  
-    cout<<"-----------------------------"<<endl; 
 
     cout<<"5 层次遍历"<<endl;  
     LevelOrder(root,result);  
